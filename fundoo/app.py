@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_login import LoginManager
+from flask_shorturl import ShortUrl
 
 
 app = Flask(__name__)
@@ -13,7 +14,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
-
+su = ShortUrl(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'laxmanraikar777@gmail.com'
