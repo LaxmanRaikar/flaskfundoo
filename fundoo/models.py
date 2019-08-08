@@ -6,8 +6,19 @@ from flask_login import UserMixin
 import jwt
 from time import time
 
+from itsdangerous import Serializer
+
+
 @login_manager.user_loader
 def load_user(user_id):
+    """
+      Flask-Login user_loader callback.
+      The user_loader function asks this function to get a User Object or return
+      None based on the userid.
+      The userid was stored in the session environment by Flask-Login.
+      user_loader stores the returned User object in current_user during every
+      flask request.
+      """
     return sign_up.query.get(int(user_id))
 
 
@@ -35,6 +46,7 @@ class sign_up(db.Model, UserMixin):
         except:
             return
         return sign_up.query.get(id)
+
 
     def __repr__(self):
         return '<sign_up %r>' % self.username

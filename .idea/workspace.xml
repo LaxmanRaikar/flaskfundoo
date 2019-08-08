@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f9b063-62b3-423a-a9b1-198f83d30816" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/fundoo/services/label.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/services/note.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/services/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/utility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/views.py" afterDir="false" />
     </list>
@@ -47,6 +50,34 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="flaskproject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fundoo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fundoo/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.views" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
