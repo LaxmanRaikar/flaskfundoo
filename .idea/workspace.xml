@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f9b063-62b3-423a-a9b1-198f83d30816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fundoo/services/label.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/services/note.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/services/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/utility.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/static/css/pagination.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fundoo/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/services/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/services/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/utility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +20,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="flaskproject" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -36,6 +43,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fundoo/template/fundoo" />
       <recent name="$PROJECT_DIR$/fundoo/fundoo" />
     </key>
   </component>
@@ -91,6 +99,9 @@
       <updated>1564989546478</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
