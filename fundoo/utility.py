@@ -6,9 +6,7 @@ from app import mail
 def send_link_email(user):
     """ this method is used to activate the account
     :param: user email_id """
-    print('myuser', user)
     token = user.get_reset_token()
-    print("mytoken", token)
     msg = Message('Activation link',
                   sender='laxmanraikar777@gmail.com',
                   recipients=[user.email_id])

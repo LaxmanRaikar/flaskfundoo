@@ -1,17 +1,28 @@
+from models import Notes
+from app import db
 
 
+class Note():
 
-class Note(Exception):
+    def __init__(self, title=None, description=None, user_id=None, remainder=None, is_pinned=None, is_archive=None,
+                 color=None, image=None, label=None, collabrator=None):
+        self.title = title
+        self.description = description
+        self.user_id = user_id
+        self.remainder = remainder
+        self.is_pinned = is_pinned
+        self.is_archive = is_archive
+        self.color = color
+        self.image = image
+        self.label = label
+        self.collabrator = collabrator
 
-    def __init__(self):
-        # initialize the default params
-        # pagination params start with 0, limit 10, page number display
-        # link, text, image, checklist using tuples
-        pass
-
-    def add(self, **kwargs):
+    def add(self):
         # calling the models to add note
-        pass
+        data = Notes(self.title, self.description, self.user_id, self.remainder, self.is_pinned, self.color,
+               self.image, self.label, self.collabrator)
+        print(data)
+
 
     def get(self, noteId):
         pass
@@ -22,8 +33,17 @@ class Note(Exception):
     def unPin(self, noteId):
         pass
 
-    def updateTitleDescription(self, **kwargs):
-        pass
+    def updateTitleDescription(self, id):
+        print(self.title, self.description, id)
+        if self.title and self.description is not None:
+            note = Notes.query.get(id)
+            note.title = self.title
+            note.description = self.description
+            db.session.commit()
+            return True
+        else:
+            return False
+
 
     def archive(self, noteId):
         pass
@@ -35,8 +55,10 @@ class Note(Exception):
         # userId (Mandatory), isArchive, isPinned, isTrash
         pass
 
-    def delete(self, query):
+    def delete(self, id):
         # userId (Mandatory), isArchive, isPinned, isTrash
-        pass
+        delete_note = Notes.query.get(id)
+        Notes.delete_data(delete_note)
+        return True
 
 

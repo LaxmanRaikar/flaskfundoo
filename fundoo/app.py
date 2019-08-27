@@ -1,4 +1,5 @@
 import os
+import dotenv
 from flask import Flask
 from flask_rbac import RBAC
 from flask_sqlalchemy import SQLAlchemy
@@ -18,7 +19,7 @@ github_blueprint = make_github_blueprint(client_id=os.environ.get('GITHUB_OAUTH_
 linked_blueprint = make_linkedin_blueprint(client_id=os.environ.get('LINKED_OAUTH_CLIENT_KEY'), client_secret=os.environ.get('LINKED_OAUTH_SECRET_KEY'))
 dropbox_blueprint = make_dropbox_blueprint(app_key=os.environ.get('DROPBOX_OAUTH_CLIENT_KEY'), app_secret=os.environ.get('DROPBOX_OAUTH_SECRET_KEY'))
 twitter_blueprint = make_twitter_blueprint(api_key=os.environ.get('TWITTER_OAUTH_CLIENT_KEY'), api_secret=os.environ.get('TWITTER_OAUTH_SECRET_KEY'))
-
+dotenv.load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
@@ -32,6 +33,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 su = ShortUrl(app)
 app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
+
 app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
@@ -41,12 +43,15 @@ app.config['MAIL_USE_SSL'] = True
 app.config['RBAC_USE_WHITE'] = True
 
 
+
 app.register_blueprint(linked_blueprint, url_prefix='/linked_login')
 app.register_blueprint(github_blueprint, url_prefix='/github_login')
 app.register_blueprint(dropbox_blueprint, url_prefix='/dropbox_login')
 app.register_blueprint(twitter_blueprint, url_prefix='/twitter_login')
-rbac = RBAC(app)
+# rbac = RBAC(app)
 mail = Mail(app)
+
+
 
 
 

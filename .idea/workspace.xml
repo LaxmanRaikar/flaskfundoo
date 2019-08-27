@@ -2,17 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f9b063-62b3-423a-a9b1-198f83d30816" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fundoo/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/static/css/pagination.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fundoo/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/.env" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundoo/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundoo/services/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/services/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/services/note.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/services/note.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/utility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/jwt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/DESCRIPTION.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PyJWT-1.4.2.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/algorithms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/api_jws.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/api_jws.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/api_jwt.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/api_jwt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/compat.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/compat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/contrib/algorithms/pycrypto.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/contrib/algorithms/pycrypto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/jwt/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
