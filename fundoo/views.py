@@ -11,12 +11,16 @@ import logging
 from utility import send_reset_email, send_link_email
 from services.redis import redis_methods
 from services.note import Note
+
 from flask import Blueprint
 from flask_dance.contrib.github import github
 from flask_dance.contrib.dropbox import dropbox
 from flask_dance.contrib.twitter import twitter
 from werkzeug.utils import redirect
 import datetime
+from lib.s3_upload import upload_to_s3
+
+import imghdr
 from flask_login import login_user, current_user, logout_user
 
 mod = Blueprint('users', __name__)
@@ -462,6 +466,7 @@ def get_note():
     print(note_get)
     return response
 
+
 @app.route('/update/<int:id>', methods=['POST','GET'])
 def updation(id):
     response = {
@@ -481,7 +486,8 @@ def updation(id):
         response['success'] = True
     return response
 
-@app.route('/delete/<int:id>', methods=['POST','GET'])
+
+@app.route('/delete/<int:id>', methods=['POST', 'GET'])
 def deletion(id):
     response = {
         'success': False,
@@ -500,11 +506,101 @@ def deletion(id):
     return response
 
 
-@app.route('/demo', methods=['POST','GET'])
-def db():
-    data=Note()
-    ab=data.delete()
-    print(ab)
-    return 'ab'
+@app.route('/pin_unpin/<int:id>', methods=['POST', 'GET'])
+def pin(id):
+    """ this method is used to pin or unpin the note"""
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    note = Notes.query.get(id)
+    if note.is_pinned is True:
+        note.is_pinned = False
+    else:
+        note.is_pinned = True
+    Notes.update(self)
+    response['success'] = True
+    response['message'] = 'note is pinned'
+    return response
 
 
+@app.route('/upload', methods=['POST','GET'])
+def s3_upload():
+    """ this method is used to upload profile pic in s3 bucket and store the image url in db"""
+    response = {
+        'success': False,
+        'message': 'something went wrong'
+    }
+    try:
+        image = request.files.get('image')  # getting image from user
+        image_file = imghdr.what(image)     # validating file
+        if image_file is None:
+            raise Exception('FILE MUST BE IMAGE')
+        else:
+            user_name = current_user.email_id      # getting the current user email_id so to store the file in that name
+            status = upload_to_s3(image, user_name)    # calling the method to upload in s3 server
+            get_user = current_user.id        # getting current user id
+            get_user_data = sign_up.query.get(get_user)    # query the user in db
+            get_user_data.profile_pic = status          # getting the url
+            db.session.commit()                        # updating in db
+            if status is not None:
+                response['success'] = True
+                response['message'] = 'image has uploaded'
+    except ConnectionError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+
+    except IOError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'improper input'
+        response = jsonify(response)
+        response.status_code = 400
+    return response
+
+
+@app.route('/addlabel/<int:id>', methods=['POST', 'GET'])
+def label(id):
+    """ this method is used to add the label """
+    response = {
+        'success': False,
+        'message': 'something went wrong'
+    }
+    try:
+        label = request.form.get('label')   # getting label from user
+        print(label, '-----------------')
+        if label:
+            data = Label(label=label, user_id=current_user.id)   # saving data
+            data.save_to_label()
+            note = Notes.query.get(id)  # getting  note
+            data.labels.append(note)    # adding data to label field
+            data.save_to_label()      # saving the data
+            response['success'] = True
+            response['message'] = 'LABEL ADDED'
+        else:
+            raise Exception('label should not be empty')
+
+    except ConnectionError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+
+    except IOError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'improper input'
+        response = jsonify(response)
+        response.status_code = 400
+    return response
+
+
+@app.route('/getlabel/<int:id>',  methods=['POST', 'GET'])
+def get_label(id):
+    data = Label.query.filter_by(user_id=str(current_user.id))
+    for label in data:
+        for nt in label.labels:
+            if nt.id == id:
+                print(label.label, '----->>>')
+    return label.label

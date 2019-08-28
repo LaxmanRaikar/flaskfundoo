@@ -34,3 +34,7 @@ class User:
         :return: user is present in db or not"""
         user = sign_up.query.filter_by(email_id=self.email_id).first()
         return user
+
+    def Profilepic(self):
+        pass
+

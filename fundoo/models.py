@@ -34,6 +34,7 @@ class sign_up(db.Model, UserMixin):
     mobile_no = db.Column(db.String(13), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     confirm_password = db.Column(db.String(100), nullable=False)
+    profile_pic = db.Column(db.String, default=None)
     is_active = db.Column(db.Boolean, default=False, nullable=False)
 
     def save_to_db(self):
@@ -155,6 +156,9 @@ class Notes(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def update(self):
+        db.session.commit()
+
     def delete_data(self):
         """ this method is used to delete the note"""
         db.session.delete(self)
@@ -187,6 +191,11 @@ class Notes(db.Model):
 class Label(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     label = db.Column(db.String(200), default=False)
+    user_id = db.Column(db.String(100), default=False)
+
+    def save_to_label(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 class Collabrator(db.Model):

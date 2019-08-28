@@ -20,9 +20,8 @@ class Note():
     def add(self):
         # calling the models to add note
         data = Notes(self.title, self.description, self.user_id, self.remainder, self.is_pinned, self.color,
-               self.image, self.label, self.collabrator)
+            self.image, self.label, self.collabrator)
         print(data)
-
 
     def get(self, noteId):
         pass
