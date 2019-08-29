@@ -1,8 +1,9 @@
 from flask_mail import Message
 from flask import url_for
-from app import mail
+from app import mail, celery
 
 
+@celery.task
 def send_link_email(user):
     """ this method is used to activate the account
     :param: user email_id """
@@ -17,6 +18,7 @@ def send_link_email(user):
     mail.send(msg)  # here sending the message
 
 
+@celery.task
 def send_reset_email(user):
     """ this method is used to send mail to reset the password
     :param:user email_id """

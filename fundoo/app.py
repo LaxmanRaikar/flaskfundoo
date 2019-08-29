@@ -1,6 +1,7 @@
 import os
 import dotenv
 from flask import Flask
+from celery import Celery
 from flask_rbac import RBAC
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -43,12 +44,15 @@ app.config['MAIL_USE_SSL'] = True
 app.config['RBAC_USE_WHITE'] = True
 
 
-
+app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 app.register_blueprint(linked_blueprint, url_prefix='/linked_login')
 app.register_blueprint(github_blueprint, url_prefix='/github_login')
 app.register_blueprint(dropbox_blueprint, url_prefix='/dropbox_login')
 app.register_blueprint(twitter_blueprint, url_prefix='/twitter_login')
 # rbac = RBAC(app)
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 mail = Mail(app)
 
 

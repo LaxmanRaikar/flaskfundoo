@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="05f9b063-62b3-423a-a9b1-198f83d30816" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundoo/services/note.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/services/note.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundoo/services/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/services/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fundoo/utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/utility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fundoo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/fundoo/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

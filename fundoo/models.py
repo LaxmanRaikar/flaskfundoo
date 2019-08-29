@@ -127,7 +127,7 @@ my_label = db.Table('my_label',
 
 my_collab = db.Table('my_collab',
     db.Column('note_id', db.Integer, db.ForeignKey('notes.id'), primary_key=True),
-    db.Column('collab_id', db.Integer, db.ForeignKey('collabrator.id'), primary_key=True)
+    db.Column('user_id', db.Integer, db.ForeignKey('sign_up.id'), primary_key=True)
 )
 
 
@@ -146,7 +146,7 @@ class Notes(db.Model):
     remainder = db.Column(db.DateTime, default=None)
     created_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     label = db.relationship('Label', secondary=my_label, lazy='subquery', backref=db.backref('labels', lazy=True))
-    collabrator = db.relationship('Collabrator', secondary=my_collab, lazy='subquery', backref=db.backref('collab', lazy=True))
+    collabrator = db.relationship('sign_up', secondary=my_collab, lazy='subquery', backref=db.backref('collab', lazy=True))
 
     def __repr__(self):
         return '<Notes %r>' % self.title

@@ -525,7 +525,59 @@ def pin(id):
     return response
 
 
-@app.route('/upload', methods=['POST','GET'])
+@app.route('/trash/<int:id>', methods=['POST', 'GET'])
+def trash(id):
+    """ this method is used to trash the note"""
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    try:
+        note = Notes.query.get(id)
+        if note.is_trash is False:
+            note.is_trash = True
+            Notes.update(self)
+            response['success'] = True
+            response['message'] = 'note is trashed'
+    except ConnectionError:
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+    except Exception as e:
+        print(e)
+        response = jsonify(str(e))
+        response.status_code = 400
+    return response
+
+
+@app.route('/restore/<int:id>', methods=['POST', 'GET'])
+def restore(id):
+    """ this method is used to restore the note"""
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    try:
+        note = Notes.query.get(id)
+        if note.is_trash is True:
+            note.is_trash = False
+            Notes.update(self)
+            response['success'] = True
+            response['message'] = 'note is restored'
+    except ConnectionError:
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+    except Exception as e:
+        print(e)
+        response = jsonify(str(e))
+        response.status_code = 400
+    return response
+
+
+@app.route('/upload', methods=['POST', 'GET'])
 def s3_upload():
     """ this method is used to upload profile pic in s3 bucket and store the image url in db"""
     response = {
@@ -561,7 +613,7 @@ def s3_upload():
     return response
 
 
-@app.route('/addlabel/<int:id>', methods=['POST', 'GET'])
+@app.route('/add_label/<int:id>', methods=['POST', 'GET'])
 def label(id):
     """ this method is used to add the label """
     response = {
@@ -595,12 +647,116 @@ def label(id):
         response.status_code = 400
     return response
 
+@app.route('/delete_label/<int:id>', methods=['POST', 'GET'])
+def delete_label(id):
+    label_data = Label.query.get(id)
+    db.session.delete(label_data)
+    db.session.commit()
+    return 'data'
+
+
+
 
 @app.route('/getlabel/<int:id>',  methods=['POST', 'GET'])
 def get_label(id):
-    data = Label.query.filter_by(user_id=str(current_user.id))
-    for label in data:
-        for nt in label.labels:
-            if nt.id == id:
-                print(label.label, '----->>>')
-    return label.label
+    """ this method is used to get the label """
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    try:
+        data = Label.query.filter_by(user_id=str(current_user.id))  # here we are getting object of label
+        for label in data:      # running loop to get the labels of the note
+            for mynote in label.labels:
+                if mynote.id == id:
+                    print(label.label, '----->>>')
+                    response['data'] = label.label
+                    response['success'] =  True
+                    response['message'] = 'label for given note'
+    except ConnectionError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+
+    except IOError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'improper input'
+        response = jsonify(response)
+        response.status_code = 400
+    return response
+
+
+
+
+@app.route('/add_collaborator/<int:id>', methods=['POST', 'GET'])
+def collab(id):
+    """ this method is used to add the collabrator"""
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    try:
+        email_id = request.form.get('email')    # getting the email id to which note should be collabrated
+        note = Notes.query.get(id)          # query with note
+        user = sign_up.query.filter_by(email_id=email_id).first()
+        if user:        # if user is in db then enter the condition
+            if user.id == current_user.id:      # checking the looged in user and the given user should not be the same
+                raise Exception('CANNOT COLLABRATE TO THE SAME USER')
+            else:
+                user.collab.append(note)    # here note is collaborated with user
+                db.session.commit()         # saving to the data
+                response['message'] = 'the note has collabrated'
+                response['success'] = True
+                response['data'] = email_id
+
+        else:
+            raise Exception('this email bot present in db')
+    except ConnectionError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+
+    except IOError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'improper input'
+        response = jsonify(response)
+        response.status_code = 400
+    return response
+
+
+@app.route('/get_collaborator/<int:id>', methods=['POST', 'GET'])
+def get_collab(id):
+    response = {
+        'success': False,
+        'message': 'something went wrong',
+        'data': []
+    }
+    try:
+        data = Notes.query.filter_by(id=id)
+        for col in data:
+
+            for my_data in col.collabrator:
+                print(my_data.email_id, '----->')
+                response['data'] = my_data.email_id
+                response['message'] =  'collabrated notes'
+                response['success'] = True
+    except ConnectionError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'check your internet connection'
+        response = jsonify(response)
+        response.status_code = 503
+
+    except IOError as e:
+        logging.error(jsonify(str(e)))
+        response['message'] = 'improper input'
+        response = jsonify(response)
+        response.status_code = 400
+    return response
+
+
+
+
